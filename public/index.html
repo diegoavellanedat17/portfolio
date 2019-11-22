@@ -53,17 +53,17 @@
                             <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#about">about</a>
+                            <a class="nav-link" href="#about">Sobre mi</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#services">services</a>
+                            <a class="nav-link" href="#services">skills</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#projects">projects</a>
+                            <a class="nav-link" href="#projects">proyectos</a>
                         </li>
  
                         <li class="nav-item">
-                            <a class="nav-link" href="#contact">contact</a>
+                            <a class="nav-link" href="#contact">contáctame</a>
                         </li>
 
                     </ul>
@@ -88,7 +88,7 @@
                         <h4 class="title-text text-uppercase">Projects Developer</h4>
                         <div class="site-buttons">
                             <div class="d-flex flex-row flex-wrap">
-                                <button type="button" class="btn button primary-button mr-4 text-uppercase" >Contáctame</button>
+                                <button type="button" class="btn button primary-button mr-4 text-uppercase" onclick="window.location.href='#contact'">Contáctame</button>
                             </div>
                         </div>
                     </div>
@@ -114,15 +114,16 @@
                                         <div class="buttonTerminal red"></div>
                                         </header>
                                         <section class="terminal">
-                                            <span class="dollar"></span> Hi there, i'm Dover
+                                            <span class="dollar"></span> Hi there, I'm Dover
                                             <br/>
-                                            <span class="dollar"></span> an inventor
+                                            <span class="dollar"></span> An inventor and hardware developer
                                             <br/>
-                                            <span class="dollar"></span> you can check and support my projects
+                                            <span class="dollar"></span> You can check and support my projects
                                             <br/>
-                                            <span class="dollar"></span> there is a secret hide in is page
+                                            <span class="dollar"></span> I'm from Bogota, Colombia
                                             <br/>
-                                            <span class="dollar"></span> if you discover it you can write de next line
+    
+                                            
                                         </section>
                                         
                                 
@@ -163,11 +164,10 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12 text-center services-title">
-                        <h1 class="text-uppercase title-text">Skills and Services</h1>
+                        <h1 class="text-uppercase title-text">Skills y Servicios</h1>
                         <p class="para">
-                            Llevando proyectos desde ideas hasta el despliegue y la implementación.
-                            Empezamos con una idea que se va materializando con el diseño, modelado y render.
-                            Se diseña un hardware y software a la medida para que se haga realidad.
+                            Comienzo llevando los proyectos desde las ideas, al despliegue y luego a la implementación. 
+                            Se inicia con una idea que se va construyendo con el diseño, modelado y tender, oara luego diseñar un hardware y software a la medida para que se haga realidad.
                         </p>
                     </div>
                 </div>
@@ -346,19 +346,19 @@
             <div class="container subscribe">
                 <div class="row">
                     <div class="col-lg-12 text-center subscribe-title">
-                        <h4 class="text-uppercase">Send a message to the lab</h4>
-                        <p class="para">Escribe tu correo, de inmediato llegará al laboratorio y me pondré en contacto contigo.</p>
+                        <h4 class="text-uppercase">Envía un mensaje a mi laboratorio</h4>
+                        <p class="para">Escribe tu correo, de inmediato me pondré en contacto contigo.</p>
                     </div>
                 </div>
                 <div class="d-sm-flex justify-content-center">
-                    <form class="w-50">
+                    <form class="w-50" name="formulario">
                         <div class="row d-flex flex-row flex-wrap">
                             <div class="col input-textbox">
-                                <input type="text" id="txtemail" class="form-control" placeholder="Email">
+                                <input type="email" required id="txtemail" class="form-control" placeholder="Email" name="email">
                             </div>
                             <div class="col">
                                 <div class="btn-submit">
-                                    <button type="submit" class="btn btn-success float-right">Send</button>
+                                    <button type="submit" class="btn btn-success float-right" >Send</button>
                                 </div>
                             </div>
                         </div>
@@ -428,6 +428,11 @@
 
     <!--  custom js file  -->
     <script src="./js/main.js"></script>
+
+
+    <!--  For de Email -->
+    <script src="https://smtpjs.com/v3/smtp.js">
+    </script>
 
 
 </body>

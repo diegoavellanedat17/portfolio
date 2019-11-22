@@ -89,3 +89,35 @@ $.fn.typewriter = function() {
     return this
   };
   $(".terminal").typewriter();
+
+
+
+  const formulario=document.forms['formulario']
+
+  formulario.addEventListener('submit', enviarMensaje);
+
+  function enviarMensaje(event){
+    event.preventDefault();
+    const email = formulario['email'].value;
+    console.log(email)
+
+    Email.send({
+        SecureToken : "6690898e-38b0-4429-88cb-d8926b69cbbd",
+        // Host : "smtp.elasticemail.com",
+        // Username : "diego.avellaneda1733@gmail.com",
+        // Password : "547c4c94-dccf-4c3d-8c6c-924c87da53d3",
+        To : 'diego.avellaneda1733@gmail.com',
+        From : "diego.avellaneda1733@gmail.com",
+        Subject : "Nuevo mensaje de cliente en Dover",
+        Body : email
+    }).then(
+      message => {
+          console.log(message)
+          alert('El mensaje fue enviado al lab')
+        
+            }
+
+    );
+
+  }
+

@@ -355,10 +355,11 @@ footer.footer-area .social a:hover > i{
     padding: .625rem;
     box-sizing: border-box;
     position: absolute;
-    width: 100%;
+    width: 80%;
     top: 1.875rem;
     bottom: 0;
     overflow: auto;
+    margin-bottom: 30px;
   }
 
   .dollar:before {
@@ -374,7 +375,7 @@ footer.footer-area .social a:hover > i{
     margin: auto;
     margin-bottom: 100px;
     position: relative;
-    top: 10.5rem;
+    top: 1rem;
     
   }
 
@@ -383,6 +384,7 @@ footer.footer-area .social a:hover > i{
     height: 1.875rem;
     border-radius: .5rem .5rem 0 0;
     padding-left: .625rem;
+    width: 80%;
   }
 
   .terminal-window header .buttonTerminal {
