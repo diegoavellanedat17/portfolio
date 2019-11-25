@@ -23,6 +23,12 @@
         width: 13rem;
     }
 
+    .terminal-window {
+
+        width: 15.5rem;
+
+      }
+
 }
 
 
@@ -60,6 +66,12 @@
         margin: 5%;
         
     }
+
+    .terminal-window {
+
+        width: 25.5rem;
+
+      }
 }
 
 

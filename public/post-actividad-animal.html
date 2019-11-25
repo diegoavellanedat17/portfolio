@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
 
@@ -42,7 +42,7 @@
         <div class="col-lg-8 col-md-10 mx-auto">
           <div class="post-heading">
             <h1>Medición de actividad animal por medio de dispositivo electrónico</h1>
-            <h2 class="subheading">Guarda toda la información importante en una manilla inteligente y desechable</h2>
+            <h2 class="subheading">Identifica la actividad realizada por mi mascota durante el día</h2>
             <span class="meta">Posted by
               <a href="#">Dover</a>
               Noviembre 20, 2019</span>
@@ -58,17 +58,44 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
-          <p>Never in all their history have men been able truly to conceive of the world as one: a single sphere, a globe, having the qualities of a globe, a round earth in which all the directions eventually meet, in which there is no center because every point, or none, is center — an equal earth which all men occupy as equals. The airman's earth, if free men make it, will be truly round: a globe in practice, not in theory.</p>
+          <p class="text-justify">Esta historia empieza con una dura situación que pasamos con mi familia. Mi perro Fox a sus 4 años empezó a sufrir de una fuerte gastritis 
+            a raíz de diferentes factores, uno de ellos era la poca actividad física que realizaba durante el día. Lo complejo de la situación era que
+             como no podiamos estar en casa para que tuviera su actividad física lo enviabamos al colegio. Donde posteriormente nos daríamos cuenta que 
+             lo dejaban en reposo constantemente.</p>
 
-          <p>Science cuts two ways, of course; its products can be used for both good and evil. But there's no turning back from science. The early warnings about technological dangers also come from science.</p>
+          <p class="text-justify">Para solucionar esta situación , construí un dispositivo electrónico que fuera 
+            capaz de informarme cuanto tiempo de actividad realizaba Fox al día y así poderlo ayudar a salir de esta enfermedad.
+          A continuación se presenta el desarrollo del prototipo y diseño final del hardware.</p>
 
-          <p>What was most significant about the lunar voyage was not that man set foot on the Moon but that they set eye on the earth.</p>
+          <h2 class="section-heading">Versión 1</h2>
 
-          <p>A Chinese tale tells of some men sent to harm a young girl who, upon seeing her beauty, become her protectors rather than her violators. That's how I felt seeing the Earth for the first time. I could not help but love and cherish her.</p>
+          <img class="img-fluid" src="./img/portfolio/actividad-animal/prototipo1.PNG" alt="Versión1">
+          
+          <span class="caption text-muted">Dispositivo Versión 1 para guardar información de la actividad animal</span>
+  
 
-          <p>For those who have seen the Earth from space, and for the hundreds and perhaps thousands more who will, the experience most certainly changes your perspective. The things that we share in our world are far more valuable than those which divide us.</p>
+          <p  class="text-justify" >La primera versión del dispositivo se realizó con el fin de identifar que tipo de señales reultarían midiendo la aceleración en los 3 ejes
+            y sometiendo diferentes razas de perros a 3 tipos de actividades, correr, caminar y reposo. Aca verás algunos de los animales que me ayudaron a realizar
+            la primera toma de datos.
+          </p>
 
-          <h2 class="section-heading">The Final Frontier</h2>
+          <img class="img-fluid " src="./img/portfolio/actividad-animal/perros.png" alt="Perros">
+          
+          <span class="caption text-muted">Algunos perros de diferentes razas con los dispositivos instalados</span>
+  
+          <p class="text-justify">Las señales se guardan en una memoria SD y posteriormente son graficadas y analizadas, esto con el fin de determinar la frecuencia de muestreo, la amplitud y algunas otras caracteristicas de la señal que ayudan a determinar que componentes usar en la segunda versión del dispositivo.</p>
+
+          <h2 class="section-heading">Versión 2</h2>
+          
+          <img class="img-fluid " src="./img/portfolio/actividad-animal/prototipo2.png" alt="Perros">
+          
+          <span class="caption text-muted">Algunos perros de diferentes razas con los dispositivos instalados</span>
+
+          <p class="text-justify">La segunda versión del dispositivo funciona con un PIC18F45k22 como microcontrolador y un módulo bluetooth HM10 para el sistema de comunicacones.
+            Básicamente el dispositivo se encarga de guardar la información de la aceleración del animal durante largos periodos en memorias EEPROM y posteriormente las
+            envía por medio de bluetooth a un PC o una aplicación móvil donde correra un algoritmo de IA que clasificará la actividad en intervalos de tiempo.
+          </p>
+
 
           <p>There can be no thought of finishing for ‘aiming for the stars.’ Both figuratively and literally, it is a task to occupy the generations. And no matter how much progress one makes, there is always the thrill of just beginning.</p>
 

@@ -32,7 +32,8 @@ blockquote{
 }
 
 .section-heading{
-    font-size:36px;font-weight:700;margin-top:60px
+    font-size:36px;font-weight:700;margin-top:60px;
+    color: #4857DD;
 }.caption{
     font-size:14px;
     font-style:italic;
