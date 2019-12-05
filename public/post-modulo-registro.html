@@ -41,7 +41,7 @@
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
           <div class="post-heading">
-            <h1>Módulo de resgistro, permite resgistrar personas en un evento, hotel y guardar info en la nuve</h1>
+            <h1>Módulo de registro, permite registrar personas en un evento, hotel y guardar info en la nuve</h1>
             <h2 class="subheading">Guarda toda la información importante en una manilla inteligente y desechable</h2>
             <span class="meta">Posted by
               <a href="#">Dover</a>
@@ -58,13 +58,42 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
-          <p>Never in all their history have men been able truly to conceive of the world as one: a single sphere, a globe, having the qualities of a globe, a round earth in which all the directions eventually meet, in which there is no center because every point, or none, is center — an equal earth which all men occupy as equals. The airman's earth, if free men make it, will be truly round: a globe in practice, not in theory.</p>
+          <p>En muchos lugares es importante verficar la identidad 
+            de la persona, ya sea para controlar si es permitio el acceso en ciertos lugares, para tener 
+            estadísitcas de ingresos, comidas, bebidas o para identificar quienes estaban en cierto lugar y tener
+            información de algún evento. </p>
 
-          <p>Science cuts two ways, of course; its products can be used for both good and evil. But there's no turning back from science. The early warnings about technological dangers also come from science.</p>
+          <p> Para esto existen diferentes sistemas que involucran identificación a través de una tarjeta o codigo de barras.</p>
+          
+          <p>
+          En este proyecto desarrollé un sistema que guarda la información importante de la persona en una manilla con un Tag RFID 
+          y sube a la nube cada que la manilla es pasada por algún punto. Esto permite que en tiempo real las personas que se encuentran 
+          en un hotel o un evento puedan identificar ubicación actual de la persona, horario de ingreso a los eventos, si ya comío en el restaurante 
+          o entró a alguna zona específica de un hotel. </p>
 
-          <p>What was most significant about the lunar voyage was not that man set foot on the Moon but that they set eye on the earth.</p>
+          <h2 class="section-heading">¿Cómo funciona?</h2>
 
-          <p>A Chinese tale tells of some men sent to harm a young girl who, upon seeing her beauty, become her protectors rather than her violators. That's how I felt seeing the Earth for the first time. I could not help but love and cherish her.</p>
+          <p>El Módulo de registro esta compuesto de una tarjeta con conexión WiFi, módulo RFID, buzzer y LED de indicación.
+          </p>
+
+          <p>Básicamente el dispositivo se conecta a un broker MQTT y se <strong> suscribe </strong> a un topic, 
+            La persona que este haciendo el registro, sencillamente llenará los datos y cuando los envíe el dispositivo esperará 
+            a que se acerque una manilla para cargar la información proveniente del broker.
+          </p>
+
+          <p>Cuando se trabaja el módulo para guardar información en la nube y posteriormente observar las estadistica, el firmware
+            actua de manera inversa, cuando el microcontrolador lee la informacion de la manilla <strong>publica</strong>
+            en el broker la informacion, primero del lugar en el que se encuentra ese módulo de registro y luego del timestamp y 
+            la persona portadora de la manilla.
+          </p>
+
+          <p> De esta manera se actualiza en la base de datos y todos los usuarios
+              tienen acceso en tiempo real.</p>
+
+
+
+
+          
 
           <p>For those who have seen the Earth from space, and for the hundreds and perhaps thousands more who will, the experience most certainly changes your perspective. The things that we share in our world are far more valuable than those which divide us.</p>
 
@@ -153,6 +182,8 @@
 
     <!--  custom js file  -->
     <script src="./js/main.js"></script>
+    <!--  For 3d design  -->
+    <script src="js/three.js"></script>
 
 </body>
 
