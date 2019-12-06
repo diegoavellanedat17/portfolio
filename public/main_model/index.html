@@ -1,0 +1,193 @@
+<html>
+	<head>
+           
+		<title>My first three.js app</title>
+		<style>
+			body { margin: 0; }
+			canvas { width: 100%; height: 100% }
+
+            #scene3d {
+	        width: 900px;
+	        height: 500px;
+	        background: red;
+            }
+            .progress-bar{
+                position: absolute;
+                
+                margin-top: 500px ;
+                margin-Left: 500px ;
+                text-align: center;
+            }
+
+		</style>
+    </head>
+    
+	<body>
+
+        <h3 class="progress-bar" id="progress-bar"> </h3>
+        
+        <script src="js/three.js"></script>
+        <script src="js/OrbitControls.js"></script>
+        <script src="js/OBJLoader.js"></script>
+        <script src="js/MTLLoader.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        
+		<script>
+            var model;
+            // scene
+            var scene = new THREE.Scene();
+            scene.background = new THREE.Color( 0x72645b );
+            scene.fog = new THREE.Fog( 0x72645b, 5, 15 );
+            var scene3d = document.getElementById("scene3d");
+
+            var camera = new THREE.PerspectiveCamera( 55, window.innerWidth / window.innerHeight, 1, 20 );
+            camera.position.set( 3, 4, 8);
+            cameraTarget = new THREE.Vector3( 0, - 0.25, 0 );
+            console.log(camera)
+
+
+            // el render de antes
+			// var renderer = new THREE.WebGLRenderer();
+            // renderer.setSize( window.innerWidth, window.innerHeight );
+            
+
+            // renderer
+			renderer = new THREE.WebGLRenderer( { antialias: true } );
+			renderer.setPixelRatio( window.devicePixelRatio );
+            renderer.setSize( window.innerWidth, window.innerHeight);
+            
+			renderer.gammaInput = true;
+			renderer.gammaOutput = true;
+            renderer.shadowMap.enabled = true;
+            renderer.shadowMap.type = THREE.BasicShadowMap
+            // colocarlo en el html 
+            //container.appendChild( renderer.domElement );
+            document.body.appendChild( renderer.domElement );
+            
+            
+
+
+            // para hacer resize con la pagina y mantener la relación.. 
+            window.addEventListener('resize',function(){
+               
+                var width= window.innerWidth;
+                var height= window.innerHeight;
+                renderer.setSize(width,height);
+               
+                camera.aspect=width/height;
+                camera.updateProjectionMatrix();
+            });
+
+            // para poder desplazarse 
+            controls = new THREE.OrbitControls(camera,renderer.domElement)
+            // para no permitir que baje del suelo
+            controls.maxPolarAngle = Math.PI/2; 
+
+               
+
+            // cargar obj con materiales en diferente posición
+            var mtlLoader = new THREE.MTLLoader();
+            mtlLoader.load('models/ZabooStation.mtl', function(materials){
+                materials.preload();
+                var objLoader = new THREE.OBJLoader();
+                objLoader.setMaterials(materials)
+
+                objLoader.load ('models/ZabooStation.obj', function(mesh){
+                        
+                    mesh.position.set( 0, - 0.49, 0.6 );
+                    mesh.rotation.x= 4.7
+                    mesh.scale.set(0.03,0.03,0.03)	
+                    scene.add(mesh)
+
+                    mesh.traverse( function ( child ) {
+                        if ( child instanceof THREE.Mesh ) {
+                        child.castShadow = true;
+                        child.receiveShadow = true;
+                        
+
+                        }
+                    });
+                },
+                function ( xhr ) {
+
+                    console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
+                                // barra de progreso de carga del 3d
+
+
+                    })
+
+            })
+            // Ground
+			var plane = new THREE.Mesh(
+				new THREE.PlaneBufferGeometry( 40, 40 ),
+				//new THREE.MeshPhongMaterial( { color: 0x999999, specular: 0x101010 } )
+                new THREE.MeshPhongMaterial( { color: 0xe6e4df, specular: 0xe6e4df } )
+				);
+			    plane.rotation.x = - Math.PI / 2;
+				plane.position.y = - 0.5;
+				scene.add( plane );
+				plane.receiveShadow = true;
+                plane.castShadow = true;
+              
+
+            // var geometry = new THREE.BoxGeometry( 2, 2, 2);
+            // // Texturas
+            // // el doble side significa que se pueden ver las texturas por amboslados de la cara
+            
+            // var cubeMaterials=[
+            //     new THREE.MeshBasicMaterial({map: new THREE.TextureLoader().load('img/logo-dover.png'),side: THREE.DoubleSide}),
+            //     new THREE.MeshBasicMaterial({map: new THREE.TextureLoader().load('img/logo-dover.png'),side: THREE.DoubleSide}),
+            //     new THREE.MeshBasicMaterial({map: new THREE.TextureLoader().load('img/logo-dover.png'),side: THREE.DoubleSide}),
+            //     new THREE.MeshBasicMaterial({map: new THREE.TextureLoader().load('img/logo-dover.png'),side: THREE.DoubleSide}),
+            //     new THREE.MeshBasicMaterial({map: new THREE.TextureLoader().load('img/logo-dover.png'),side: THREE.DoubleSide}),
+            //     new THREE.MeshBasicMaterial({map: new THREE.TextureLoader().load('img/logo-dover.png'),side: THREE.DoubleSide}),
+
+            // ]
+            // // material basico 
+            //var material = new THREE.MeshBasicMaterial( { color: 0xffff00, wireframe:true} );
+            
+            // //material de textura
+            // var material = new THREE.MeshFaceMaterial(cubeMaterials);
+			// var cube = new THREE.Mesh( geometry, material);
+			// scene.add( cube );
+ 
+            // Luces 
+            const lightHemi=scene.add( new THREE.HemisphereLight( 0x8a8a88, 0x111122,0.3 ) );
+            
+			addShadowedLight( 1, 1, 1, 0x6fc7c1, 1.5 );
+			addShadowedLight( 0.5, 1, - 1, 0xffaa00, 0.8);
+
+            function addShadowedLight( x, y, z, color, intensity ) {
+				var directionalLight = new THREE.DirectionalLight( color, intensity );
+				directionalLight.position.set( x, y, z );
+				scene.add( directionalLight );
+				directionalLight.castShadow = true;
+                directionalLight.receiveShadow= true;
+				var d = 1;
+				directionalLight.shadow.camera.left = - d;
+				directionalLight.shadow.camera.right = d;
+				directionalLight.shadow.camera.top = d;
+				directionalLight.shadow.camera.bottom = - d;
+				directionalLight.shadow.camera.near = 1;
+				directionalLight.shadow.camera.far = 4;
+				directionalLight.shadow.bias = - 0.002;
+            }
+            
+
+			var animate = function () {
+				requestAnimationFrame( animate );
+
+				//cube.rotation.x += 0.01;
+				//cube.rotation.y += 0.01;
+                
+                renderer.render( scene, camera );
+               
+                
+			};
+
+            animate();
+            console.log(scene)
+
+		</script>
+	</body>
+</html>
