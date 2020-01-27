@@ -25,7 +25,7 @@ controls = new THREE.OrbitControls(camera,renderer.domElement)
 
 
     var objLoader = new THREE.OBJLoader();
-        //objLoader.setMaterials(materials)
+    //objLoader.setMaterials(materials)
 
     objLoader.load ('models/cuarzo1.obj', function(mesh){
 
@@ -57,7 +57,6 @@ controls = new THREE.OrbitControls(camera,renderer.domElement)
 
      })
 
-    
 
 
 

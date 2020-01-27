@@ -121,3 +121,15 @@ $.fn.typewriter = function() {
 
   }
 
+  function DirigirProyecto(){
+    const formularioId= $('.formulario-id').val()
+    console.log(formularioId)
+    if(formularioId==='ganaderia-long-range'){
+      console.log('Abriendo proyecto de ganaderia')
+      window.open("../Ganaderia_lora/index-ganaderia.html");
+    }
+    else {
+      alert(`No existe un proyecto con el nombre ${formularioId}`)
+    }
+  }
+
