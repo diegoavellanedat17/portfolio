@@ -1,4 +1,52 @@
-$(document).ready(function () {
+
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyCkijSVIChWXjYx2rUa6jtlgTw0B6WLpIM",
+    authDomain: "dover-9e1d2.firebaseapp.com",
+    databaseURL: "https://dover-9e1d2.firebaseio.com",
+    projectId: "dover-9e1d2",
+    storageBucket: "dover-9e1d2.appspot.com",
+    messagingSenderId: "951005647269",
+    appId: "1:951005647269:web:9f2dbd60ae4310b67f584c",
+    measurementId: "G-Y183VFYGLE"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  // The access to database 
+  var db = firebase.firestore();
+  
+  //Import projects info 
+  
+  function infoProyect(){
+    return new Promise((resolve,reject)=>{
+     
+      this.db.collection('proyecto')
+      .get()
+      .then(function(querySnapshot){
+        if(querySnapshot.empty){
+          console.log('No hay proyectos')
+          
+        }
+        else{
+        querySnapshot.forEach(function(doc){
+        const proyectos=doc.data().titulo
+        console.log(proyectos)
+        // aqui entro cuando la promesa se resuelve para los usuarios, ahora se buscarán los productos 
+        //resolve(arrayAllowProducts)
+        // se buscara pt cada posicion		
+        })
+        }
+  
+        })
+      .catch(function(error){
+       console.error("Error obtenido"+error)
+       reject(error)
+        })
+  
+  })
+}
+
+  $(document).ready(function () {
 
 
     let $btns = $('.project-area .button-group button');
@@ -60,10 +108,10 @@ $(document).ready(function () {
 
     navbarFixed();
 
-});
+  });
 
-// Type Writer to introduce Myself
-$.fn.typewriter = function() {
+  // Type Writer to introduce Myself
+  $.fn.typewriter = function() {
     this.each(function() {
       var c = $(this),
         b = c.html(),
@@ -87,7 +135,7 @@ $.fn.typewriter = function() {
       e()
     });
     return this
-  };
+    };
   $(".terminal").typewriter();
 
 
@@ -122,14 +170,30 @@ $.fn.typewriter = function() {
   }
 
   function DirigirProyecto(){
+
     const formularioId= $('.formulario-id').val()
     console.log(formularioId)
-    if(formularioId==='ganaderia-long-range'){
-      console.log('Abriendo proyecto de ganaderia')
-      window.open("../Ganaderia_lora/index-ganaderia.html");
-    }
-    else {
-      alert(`No existe un proyecto con el nombre ${formularioId}`)
-    }
+
+    var proyectRef=db.collection("proyecto").doc(formularioId)
+
+    proyectRef.get()
+    .then(function(doc){
+      if(doc.exists){
+        console.log("Document data", doc.data())
+        window.open("../PanelTemplate/indexPanelTemplate.html");
+        localStorage.setItem("IDProyecto",formularioId)
+      }
+      else{
+        console.log("not such a document")
+        alert(`No existe un proyecto con el nombre ${formularioId}`)
+      }
+    })
+    .catch(function(error) {
+      console.log("Error getting document:", error);
+      alert(`Error consultando este ID`)
+      
+    });
+
+
   }
 
